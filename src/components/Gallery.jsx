@@ -32,12 +32,12 @@ const fetchTours = async () => {
   }
 }
 
-// useEffect to fetch data on component mount
+// useEffect for fetching data on component mount
  useEffect(() => {
     fetchTours();
   }, []);
 
-  //nned to do loading state 
+  
 
   if(loading) {
     return <h2>Loading...</h2>;
@@ -59,12 +59,14 @@ const fetchTours = async () => {
           {tours.map((tour) => (
             <TourCard
               key={tour.id}
-              {...tour} // Spread operator to pass all tour properties
-              onRemove={onRemove} // Pass the remove function
+              {...tour} 
+              onRemove={onRemove} 
             />
           ))}
         </section>
       );
     };
-    
+
     export default Gallery;
+
+    
