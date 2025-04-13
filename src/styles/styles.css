@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: #f0f4f8;
+    background: grey;
     margin: 0;
     padding: 0;
   }
@@ -18,7 +18,7 @@ body {
   }
   
   .tour-card {
-    background: grey;
+    background: whitesmoke;
     border-radius: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
