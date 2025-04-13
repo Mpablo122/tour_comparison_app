@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from 'react';
+//Task 1 - Setup root component with state and props structure
+
+//Importing tools from React - useState to manage values
+import React, { useState } from 'react';
+
+//Importing the Gallery component to display the list of tours
 import Gallery from './components/Gallery';
-import './styles.css';
 
-const App = () => {
+//Importing the CSS file for styling the app
+import './styles/styles.css';
+
+//This is the main component of the app
+function App() {
+  //This state variable stores the list of tours (starts as an empty array)
   const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
-  const fetchTours = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch('https://course-api.com/react-tours-project');
-      if (!response.ok) throw new Error('Failed to fetch tours');
-      const data = await response.json();
-      setTours(data);
-      setError('');
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchTours();
-  }, []);
-
+  //This function removes a tour from the list using its ID
   const removeTour = (id) => {
+    // Update the tours list by keeping only the tours that don't match the given ID
     setTours((prevTours) => prevTours.filter((tour) => tour.id !== id));
   };
 
   return (
-    <main className="app">
-      <h1>Tours</h1>
-      {loading ? (
-        <p className="loading">Loading...</p>
-      ) : error ? (
-        <p className="error">{error}</p>
-      ) : (
-        <Gallery tours={tours} onRemove={removeTour} />
-      )}
+    <main>
+      {/* App title */}
+      <h1>Tour Explorer</h1>
+      {/* Gallery component displays the tours and tours is the list of tours
+        setTours updates the tours list and onRemove removes a tour */}
+      <Gallery tours={tours} setTours={setTours} onRemove={removeTour} />
     </main>
   );
-};
+}
 
+//Exporting the main App component as the default export
 export default App;
